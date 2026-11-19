@@ -89,7 +89,7 @@ public class Impressora {
                 dados, POSICAO_TEXTO_FIXA, ESTILO_TEXTO_FIXO, TAMANHO_TEXTO_FIXO);
         if (retorno >= 0) {
             System.out.println("Texto enviado com sucesso.");
-            ImpressoraDLL.INSTANCE.AvancaPapel(1);
+            ImpressoraDLL.INSTANCE.AvancaPapel(2);
             cortarPapel();
         } else {
             System.out.println("Erro ao imprimir texto. Código: " + retorno);
@@ -140,6 +140,8 @@ public class Impressora {
             int retorno = ImpressoraDLL.INSTANCE.ImprimeXMLSAT(conteudo, 0);
             if (retorno == 0) {
                 System.out.println("Cupom fiscal (SAT) impresso com sucesso.");
+                ImpressoraDLL.INSTANCE.AvancaPapel(3);
+                cortarPapel();
             } else {
                 System.out.println("Erro ao imprimir XML SAT. Código: " + retorno);
             }
@@ -155,6 +157,8 @@ public class Impressora {
                     conteudo, ASSINATURA_QRCODE_CANCELAMENTO, 0);
             if (retorno == 0) {
                 System.out.println("Cupom de cancelamento impresso com sucesso.");
+                ImpressoraDLL.INSTANCE.AvancaPapel(3);
+                cortarPapel();
             } else {
                 System.out.println("Erro ao imprimir XML de cancelamento. Código: " + retorno);
             }
